@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import Home from "./Pages/Home/Home"
 import Feed from "./Components/Feed";
 import Video from "./Pages/Video/Video";
+import SearchResults from "./Components/SearchResults";
 import { Provider } from "react-redux";
 import store from "./utils/store";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -19,6 +20,10 @@ const appRouter = createBrowserRouter([
             {
                 path: "/watch",
                 element: <Video />
+            },
+            {
+                path: "/search",
+                element: <SearchResults />
             }
         ]
     }

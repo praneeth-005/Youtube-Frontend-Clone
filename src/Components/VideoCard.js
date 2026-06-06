@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const VideoCard = ({ info }) => {
     const { snippet, statistics } = info;
     const { channelTitle, title, thumbnails } = snippet;
+    const videoId = typeof info.id === 'object' ? info.id.videoId : info.id;
 
     // Formatting view count to be more readable
     const formatViewCount = (count) => {
@@ -17,13 +18,13 @@ const VideoCard = ({ info }) => {
     };
 
     return (
-        <Link to={`/watch?v=${info.id}`}>
+        <Link to={`/watch?v=${videoId}`}>
             <div className="flex flex-col w-full sm:w-[320px] md:w-[340px] cursor-pointer group">
                 <div className="relative">
-                    <img 
-                        className="rounded-xl w-full object-cover aspect-video group-hover:rounded-none transition-all duration-300" 
-                        alt="thumbnail" 
-                        src={thumbnails?.medium?.url || thumbnails?.high?.url} 
+                    <img
+                        className="rounded-xl w-full object-cover aspect-video group-hover:rounded-none transition-all duration-300"
+                        alt="thumbnail"
+                        src={thumbnails?.medium?.url || thumbnails?.high?.url}
                     />
                 </div>
                 <div className="flex gap-3 mt-3">

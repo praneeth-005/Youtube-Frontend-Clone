@@ -46,17 +46,17 @@ const Video = () => {
                     {comments.map((comment) => {
                         const snippet = comment?.snippet?.topLevelComment?.snippet;
                         if (!snippet) return null;
-                        
+
                         return (
                             <div key={comment.id} className="flex gap-4">
-                                <img 
-                                    className="w-10 h-10 rounded-full bg-gray-200" 
-                                    src={snippet.authorProfileImageUrl} 
-                                    alt={snippet.authorDisplayName} 
+                                <img
+                                    className="w-10 h-10 rounded-full bg-gray-200"
+                                    src={snippet.authorProfileImageUrl}
+                                    alt={snippet.authorDisplayName}
                                 />
                                 <div>
                                     <p className="font-semibold text-sm">
-                                        {snippet.authorDisplayName} 
+                                        {snippet.authorDisplayName}
                                     </p>
                                     <p className="text-sm mt-1 text-gray-800 break-words whitespace-pre-wrap">
                                         {snippet.textOriginal}
