@@ -1,39 +1,50 @@
-import "./index.css";
-import ReactDOM from "react-dom/client";
-import Home from "./Pages/Home/Home"
-import Feed from "./Components/Feed";
-import Video from "./Pages/Video/Video";
-import SearchResults from "./Components/SearchResults";
-import Error from "./Components/Error";
 import { Provider } from "react-redux";
-import store from "./utils/store";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Body from "./Components/Body";
+import Head from "./Components/Head";
+import "./index.css";
+import appStore from "./utils/appStore";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import WatchPage from "./Components/WatchPage";
+import MainContainer from "./Components/MainContainer";
+
+const AppLayout = () => {
+    return (
+        <div className="min-h-screen bg-white text-[#0f0f0f]">
+            <Head />
+            <Outlet />
+        </div>
+    );
+};
 
 const appRouter = createBrowserRouter([
     {
         path: "/",
-        element: <Home />,
-        errorElement: <Error />,
+        element: <AppLayout />,
         children: [
             {
                 path: "/",
-                element: <Feed />
-            },
-            {
-                path: "/watch",
-                element: <Video />
-            },
-            {
-                path: "/search",
-                element: <SearchResults />
+                element: <Body />,
+                children: [
+                    {
+                        path: "/",
+                        element: <MainContainer />
+                    },
+                    {
+                        path: "watch",
+                        element: <WatchPage />
+                    }
+                ]
             }
         ]
     }
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-    <Provider store={store}>
-        <RouterProvider router={appRouter} />
-    </Provider>
-);
+function App() {
+    return (
+        <Provider store={appStore}>
+            <RouterProvider router={appRouter} />
+        </Provider>
+    );
+}
+
+export default App;

@@ -1,26 +1,24 @@
 {
-  "name": "playtube",
+  "name": "youtube",
   "version": "1.0.0",
-  "description": "User can view the content in video format",
+  "description": "This development is only for educational purpose\"",
   "license": "ISC",
   "author": "Praneeth",
-  "type": "module",
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel serve ./src/index.html --watch-dir ./src",
+    "build": "parcel build ./src/index.html",
+    "test": "jest"
   },
   "devDependencies": {
     "parcel": "^2.16.4"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.12.0",
-    "@tailwindcss/postcss": "^4.3.0",
-    "moment": "^2.30.1",
-    "react": "^19.2.6",
+    "@reduxjs/toolkit": "^2.11.2",
+    "@tailwindcss/postcss": "^4.2.2",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
     "react-redux": "^9.3.0",
-    "react-router": "^6.30.4",
-    "react-router-dom": "^6.30.4",
-    "tailwindcss": "^4.3.0"
+    "react-router-dom": "^6.28.0",
+    "tailwindcss": "^4.2.2"
   }
 }
