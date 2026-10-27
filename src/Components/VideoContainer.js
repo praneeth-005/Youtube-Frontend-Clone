@@ -15,6 +15,11 @@ const VideoContainer = () => {
     }, []);
 
     const getVideos = async () => {
+        if (!YOUTUBE_API) {
+            // No API key configured - catalogue is already safely loaded with zero network errors
+            return;
+        }
+
         try {
             const data = await fetch(YOUTUBE_API);
             if (!data.ok) throw new Error("YouTube API status " + data.status);

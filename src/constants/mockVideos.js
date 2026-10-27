@@ -232,14 +232,21 @@ export const MOCK_VIDEOS = [
 export const POPULAR_SEARCH_SUGGESTIONS = [
     "react js tutorial",
     "react 19 new features",
+    "react project for beginners",
     "javascript full course",
+    "javascript interview questions",
     "lofi hip hop radio",
+    "relaxing study music",
     "cricket highlights",
+    "world cup highlights",
     "ed sheeran perfect",
+    "rick astley never gonna give you up",
     "frontend web development",
     "fireship 100 seconds",
     "python for beginners",
     "street food recipes",
     "music playlist 2026",
-    "gaming highlights"
+    "gaming highlights",
+    "coding portfolio projects",
+    "solidity blockchain course"
 ];

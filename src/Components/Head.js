@@ -33,29 +33,38 @@ const Head = () => {
     }, [searchText]);
 
     const getSuggestions = async (query) => {
-        try {
-            const data = await fetch(YOUTUBE_SEARCH_API + encodeURIComponent(query));
-            if (!data.ok) throw new Error("Search API status " + data.status);
-            const json = await data.json();
-            if (Array.isArray(json) && Array.isArray(json[1])) {
-                setSuggestions(json[1]);
-                return;
+        if (!query || !query.trim()) {
+            setSuggestions([]);
+            return;
+        }
+
+        if (YOUTUBE_SEARCH_API) {
+            try {
+                const data = await fetch(YOUTUBE_SEARCH_API + encodeURIComponent(query));
+                if (data.ok) {
+                    const json = await data.json();
+                    if (Array.isArray(json) && Array.isArray(json[1])) {
+                        setSuggestions(json[1]);
+                        return;
+                    }
+                }
+            } catch (err) {
+                // fall back to local suggestions
             }
-            throw new Error("Unexpected format");
-        } catch (err) {
-            const filtered = POPULAR_SEARCH_SUGGESTIONS.filter((s) =>
-                s.toLowerCase().includes(query.toLowerCase())
-            );
-            if (filtered.length > 0) {
-                setSuggestions(filtered);
-            } else {
-                setSuggestions([
-                    query,
-                    `${query} tutorial`,
-                    `${query} 2026`,
-                    `best of ${query}`
-                ]);
-            }
+        }
+
+        const filtered = POPULAR_SEARCH_SUGGESTIONS.filter((s) =>
+            s.toLowerCase().includes(query.toLowerCase())
+        );
+        if (filtered.length > 0) {
+            setSuggestions(filtered);
+        } else {
+            setSuggestions([
+                query,
+                `${query} tutorial`,
+                `${query} 2026`,
+                `best of ${query}`
+            ]);
         }
     };
 
